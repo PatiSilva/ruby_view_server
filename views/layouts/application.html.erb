@@ -1,28 +1,35 @@
+
 <%
   def link_to(name, url)
     return "<a href='#{url}'>#{name}</a>"
   end
 %>
 <html>
+<%= @request.query.inspect %>
   <body>
     <h1>You're using a layout</h1>
     <p>
       <h3> I'm a header</h3>
       <p>Put things in the header</p>
-      <a href='me.html'>Me</a>
+      <a href='me'>Me</a>
       <%= link_to('This is a link to google', 'http://google.com') %>
-
-
     </p>
+    <form method='post' action="<%= @request.path %>">
+      First name: <input type="text" name="first_name" placeholder='first name'/><br />
+      <input type="submit" value="Submit" />
+    </form>
+
     <hr />
     <div>
       <%= yield %>
+
     </div>
     <hr />
     <div>
       <h3> I'm a footer</h3>
       <p>Put things in the footer</p>
       <a href="http://github.com">GitHub</a>
+      <%= Time.now %>
     </div>
   </body>
 </html>
